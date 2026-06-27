@@ -1,0 +1,36 @@
+name: CI/CD for frontend deploy to server
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy_frontend_to_server:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install rsync -y
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        touch ~/.ssh/known_hosts
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+
+    - name: Build Project
+      run: |
+        npm install --legacy-peer-deps
+        npm run build
+
+    - name: Deploy to server
+      run: |
+        rsync -avvvz --delete --exclude='api/' --exclude='node_modules/' --exclude='.env' -e "ssh -i ~/.ssh/id_rsa" ./dist/ "ubuntu@${{ secrets.SSH_HOST }}:/var/www/fvthakor/"

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.redoyanulhaque.me)",
+      "WebFetch(domain:github.com)",
+      "Bash(Remove-Item \"e:\\\\__code\\\\ai\\\\my-portfolio\\\\api\\\\chat.js\" -Force)",
+      "Bash(git lfs *)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
+    ],
+    "additionalDirectories": [
+      "e:\\__code\\ai\\my-portfolio\\api"
+    ]
+  }
+}
