@@ -23,10 +23,12 @@ const Landing = ({ children }: PropsWithChildren) => {
           <div className="landing-info">
             <h3>An</h3>
             <h2 className="landing-info-h2">
-              <div className="landing-h2-1">AI Engineer</div>
+              <div className="landing-h2-1">VoIP Engineer</div>
+              <div className="landing-h2-2">Backend Dev</div>
             </h2>
             <h2>
               <div className="landing-h2-info">Full-Stack Developer</div>
+              <div className="landing-h2-info-1">Node.js & Laravel</div>
             </h2>
           </div>
           {/* Mobile photo - shows only on mobile when 3D character is hidden */}
